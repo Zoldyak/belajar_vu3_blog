@@ -1,20 +1,24 @@
 <template>
-  <div class="home">
+  <div class="HomeView">
    <h1>Home</h1>
    <PostList :posts="posts" />
+   <!-- <div v-for="row in posts" :key="row.id">
+    <h3>{{ row.title }}</h3>
+  </div> -->
   </div>
 </template>
 <script>
-import PostList from "../components/PostList.vue";
-import { ref } from 'vue';
+// import PostList from "../components/PostList.vue"
+import PostList from "../components/PostList";
+import { ref } from 'vue'
 export default {
   name: 'HomeView',
-  component:{
+  components: {
     PostList
   },
   setup(){
-    console.log('setup');
-    const posts= ref([
+   
+       const posts= ref([
       {
         id:1,
         title:"Judul 1",
@@ -26,9 +30,31 @@ export default {
         body:"Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book."
       }
     ])
-    return {
-      posts
-    }
-  },
+      
+      return {
+        posts
+      }
+  }
+
+  // setup(){
+  //   console.log('setup');
+  //   const posts= ref([
+  //     {
+  //       id:1,
+  //       title:"Judul 1",
+  //       body:"Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum."
+  //     },
+  //     {
+  //       id:2,
+  //       title:"Judul 2",
+  //       body:"Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book."
+  //     }
+  //   ])
+   
+  //   return {
+  //     posts
+  //   }
+  // },
+
 }
 </script>
