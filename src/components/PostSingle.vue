@@ -1,7 +1,7 @@
 <template lang="">
     <div>
         <h3>
-            {{data_item.title}}
+            {{data_item.first_name}}
         </h3>
         <h4>
             {{snippet}}
@@ -15,7 +15,7 @@ export default {
     props:['data_item'],
     setup(props) {
         const snippet =computed( ()=>{
-            return props.data_item.body.substring(0,200) +"..."
+            return props.data_item.email.substring(0,200) +"..."
         })
      return {
         snippet
