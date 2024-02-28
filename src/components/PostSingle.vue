@@ -1,7 +1,7 @@
 <template lang="">
     <div>
         <h3>
-            <router-link :to="{ name:'ShowPosts', params:{  id: data_item.id} }">
+            <router-link :to="{ name:'ShowPosts', params:{  id: data_item.id } }">
                 {{data_item.first_name}}
             </router-link>
             

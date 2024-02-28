@@ -4,19 +4,19 @@
     </div>
     <div>
         <h3>
-            Name : {{postdetail.first_name}}
+            Name : {{post.first_name}}
         </h3>
-        <p>email : {{postdetail.email}}</p>
+        <p>email : {{post.email}}</p>
     </div>
 </template>
 <script>
-import  getPostsDetail from '@/composable/api_postdetail'
+import  getPost from '@/composable/api_postdetail'
 export default {
     props: ['id'],
     setup(props) {
-        const {postdetail,error,load}= getPostsDetail(props.id)
+        const {post,error,load}= getPost(props.id)
         load()
-        return {postdetail,error}
+        return {post,error}
     }
 }
 </script>

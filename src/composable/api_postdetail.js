@@ -1,7 +1,7 @@
 import { ErrorCodes, ref } from 'vue'
 
-const getPostsDetail = (id)=>{
-    const postdetail = ref(null)
+const getPost = (id)=>{
+    const post = ref(null)
     const error =ref(null)
     const load =async  () =>{
         try {
@@ -9,11 +9,11 @@ const getPostsDetail = (id)=>{
           if (!data.ok ) {
             throw Error('Tidak Ada Data');
           }
-          postdetail.value = await data.json();
+          post.value = await data.json();
         } catch (err) {
           error.value=err.message
         }
       }
-    return { postdetail,error,load}
+    return { post,error,load}
 }
-export default getPostsDetail
+export default getPost
