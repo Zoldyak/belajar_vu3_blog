@@ -1,13 +1,11 @@
 import { ErrorCodes, ref } from 'vue'
 
 const getPost = (id)=>{
-  
     const post = ref(null)
     const error =ref(null)
     const load =async  () =>{
         try {
-          console.log("ID KU"+id)
-          let data = await  fetch('http://localhost:3000/posts/'+id)
+          let data = await  fetch('http://localhost:3000/posts'+ id)
           if (!data.ok ) {
             throw Error('Tidak Ada Data');
           }

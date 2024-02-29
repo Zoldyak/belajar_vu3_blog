@@ -10,14 +10,14 @@
     </div>
 </template>
 <script>
-import  getPost from '@/composable/api_postdetail'
+import getPost from '@/composable/api_postdetail';
 export default {
-    props: ['id'],
-    setup(props) {
-        const {post,error,load}= getPost(props.id)
-        load()
-        return {post,error}
-    }
+   props:['id'],
+   setup(props) {
+    const { post,error,load} = getPost(props.id)
+    load()
+    return { post,error}
+   }
 }
 </script>
 <style lang="">
