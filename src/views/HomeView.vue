@@ -2,7 +2,13 @@
   <div class="HomeView">
    <h1>Home</h1>
    <div v-if="error">{{ error }}</div>
-   <PostList v-if="showPosts" :posts="posts" />
+   <div v-if="posts.length">
+      <PostList v-if="showPosts" :posts="posts" />
+   </div>
+   <div v-else>
+      <Loading />
+   </div>
+   
    <!-- <div v-for="row in posts" :key="row.id">
     <h3>{{ row.title }}</h3>
   </div> -->
@@ -14,11 +20,13 @@
 // import PostList from "../components/PostList.vue"
 import PostList from "../components/PostList";
 import getPosts  from '../composable/api_pots'
+import Loading from '@/components/Loading.vue'
 import { ErrorCodes, ref } from 'vue'
 export default {
   name: 'HomeView',
   components: {
-    PostList
+    PostList,
+    Loading
   },
   setup(){
 
