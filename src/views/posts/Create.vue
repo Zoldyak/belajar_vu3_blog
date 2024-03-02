@@ -1,6 +1,6 @@
 <template lang="v">
     <div>
-        <form>
+        <form @submit.prevent="handleSubmit">
             <div>
                 <label>
                     Nama Deppan
@@ -30,8 +30,10 @@
 </template>
 <script>
 import { ref, onMounted } from 'vue';
+import { useRoute } from 'vue-router';
 export default {
     setup() {
+        const router=useRoute()
         const FirstName= ref()
         const LastName= ref()
         const tag= ref()
@@ -43,12 +45,30 @@ export default {
             }
             tag.value=''
         }
+        const handleSubmit = async ()=>{
+            const post_data={
+                first_name:FirstName.value,
+                last_name:LastName.value,
+                tags:tags.value
+            }
+            await fetch('http://localhost:3000/posts',{
+                method:"POST",
+                headers:{"Content-Type":"application/json"},
+                body:JSON.stringify(post_data)
+            })
+             router.push({
+                name: 'home'
+            })
+        }
+       
         return {
             FirstName,
             LastName,
             tag,
             tags,
-            handlekeydownn
+            handlekeydownn,
+            handleSubmit,
+            router
         }
     }
 }
