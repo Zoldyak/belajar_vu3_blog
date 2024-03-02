@@ -15,6 +15,12 @@
             </div>
             <div>
                 <label>
+                    Email
+                </label>
+                <input type="text"  v-model="Email"/>             
+            </div>
+            <div>
+                <label>
                     tags
                 </label>
                 <input type="text"  v-model="tag" @keydown.enter.prevent="handlekeydownn"/>             
@@ -30,13 +36,14 @@
 </template>
 <script>
 import { ref, onMounted } from 'vue';
-import { useRoute } from 'vue-router';
+import { useRouter, useRoute } from 'vue-router'
 export default {
     setup() {
-        const router=useRoute()
+        const routes = useRouter()
         const FirstName= ref()
         const LastName= ref()
         const tag= ref()
+        const Email= ref()
         const tags= ref([])
         const handlekeydownn = ()=>{
             if (! tags.value.includes(tag.value)) {
@@ -49,15 +56,16 @@ export default {
             const post_data={
                 first_name:FirstName.value,
                 last_name:LastName.value,
-                tags:tags.value
+                tags:tags.value,
+                email:Email.value
             }
             await fetch('http://localhost:3000/posts',{
                 method:"POST",
                 headers:{"Content-Type":"application/json"},
                 body:JSON.stringify(post_data)
             })
-             router.push({
-                name: 'HomeView'
+            routes.push({
+                name:'home'
             })
         }
        
@@ -68,7 +76,8 @@ export default {
             tags,
             handlekeydownn,
             handleSubmit,
-            router
+            routes,
+            Email
         }
     }
 }
