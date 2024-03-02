@@ -57,7 +57,7 @@ export default {
                 body:JSON.stringify(post_data)
             })
              router.push({
-                name: 'home'
+                name: 'HomeView'
             })
         }
        
