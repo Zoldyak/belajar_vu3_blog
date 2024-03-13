@@ -7,8 +7,13 @@
         {{snippet}}
     </router-link>
     <br>
+    
     <span class="post-meta" v-for="tag in data_item.tags" :key="tag">
-        {{tag}}
+        
+        <router-link :to="{ name:'Tag', params:{ tag:tag } }">
+            #{{tag}}
+        </router-link>
+       
        
     </span>
 </template>
