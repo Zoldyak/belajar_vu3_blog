@@ -1,5 +1,7 @@
 import { ErrorCodes, ref } from 'vue'
 import { projectfirestore } from "@/firebase/config";
+import { collection, getDocs } from "firebase/firestore";
+
 const getPosts = ()=>{
     const posts = ref([])
     const error =ref(null)
@@ -9,15 +11,17 @@ const getPosts = ()=>{
             console.log("LOADING...");
             setTimeout(resolve, 2000)
         })
-
-        const res= await projectfirestore.collection('post').get()
-        const data= res.docs.map(()=>{
+        // const querySnapshot = await getDocs(collection(projectfirestore, "post"));
+        // console.log(querySnapshot);
+        const res= await projectfirestore.collection('posts').get() /// POSTS ada nama collection yang ada di firebase  firestore
+        // console.log(res);
+         posts.value= res.docs.map(doc=>{
           return  {
             ...doc.data(),
             id:doc.id
           }
         })
-        console.log(data);
+        console.log(posts);
 
           // let data = await  fetch('http://localhost:3000/posts')
           // if (!data.ok ) {
