@@ -120,6 +120,7 @@
 <script>
 import { ref, onMounted } from 'vue';
 import { useRouter, useRoute } from 'vue-router'
+import { projectfirestore } from "@/firebase/config"
 export default {
     setup() {
         const routes = useRouter()
@@ -142,11 +143,12 @@ export default {
                 tags:tags.value,
                 email:Email.value
             }
-            await fetch('http://localhost:3000/posts',{
-                method:"POST",
-                headers:{"Content-Type":"application/json"},
-                body:JSON.stringify(post_data)
-            })
+            const res = projectfirestore.collection('posts').add(post_data)
+            // await fetch('http://localhost:3000/posts',{
+            //     method:"POST",
+            //     headers:{"Content-Type":"application/json"},
+            //     body:JSON.stringify(post_data)
+            // })
             routes.push({
                 name:'home'
             })
