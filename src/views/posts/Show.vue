@@ -26,6 +26,7 @@
                                 <a href="#!">Start Bootstrap</a>
                                 on August 24, 2023
                             </span>
+                            <button class="btn btn-danger" @click="handleDelete">Delete</button>
                         </div>
                     </div>
                 </div>
@@ -54,7 +55,8 @@
 import { ref, onMounted } from 'vue';
 import getPost from '@/composable/api_postdetail';
 import Loading from '@/components/Loading.vue'
-
+import { projectfirestore } from "@/firebase/config"
+import { useRouter } from "vue-router";
 export default {
    props: ['id'],
    components:{
@@ -62,7 +64,7 @@ export default {
    },
    setup(props) {
     
-
+         const router = useRouter()
         const { post,error,load } = getPost(props.id);
 
         onMounted(async () => {
@@ -71,8 +73,13 @@ export default {
             })
              load()
         });
-
-        return { post, error };
+        const handleDelete= async ()=>{
+            await projectfirestore.collection('posts').doc(props.id).delete()
+            router.push({
+                name :'home'}
+            )
+        }
+        return { post, error,handleDelete };
    }
 }
 </script>
